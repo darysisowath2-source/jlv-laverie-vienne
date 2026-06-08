@@ -1,0 +1,40 @@
+---
+const year = new Date().getFullYear()
+---
+<footer class="border-t border-line mt-24">
+  <div class="max-w-[1240px] mx-auto px-5 sm:px-8 py-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 text-sm">
+    <div>
+      <div class="flex items-center gap-2 mb-3">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+        <span class="font-medium tracking-tight">JLV Laverie</span>
+      </div>
+      <p class="text-muted leading-relaxed">
+        Laverie automatique cours Romestang, en plein cœur de Vienne. Ouverte 7j/7 de 6h à 22h.
+      </p>
+    </div>
+
+    <div>
+      <p class="eyebrow mb-3">Adresse</p>
+      <p class="text-muted-strong">39 cours Romestang<br/>38200 Vienne</p>
+    </div>
+
+    <div>
+      <p class="eyebrow mb-3">Horaires</p>
+      <p class="text-muted-strong">Tous les jours<br/>6h00, 22h00</p>
+    </div>
+
+    <div>
+      <p class="eyebrow mb-3">Contact</p>
+      <a href="tel:0474000000" class="block text-muted-strong hover:text-accent transition-colors">04 74 00 00 00</a>
+      <a href="mailto:contact@jlv-laverie.fr" class="block text-muted hover:text-accent transition-colors text-xs mt-1">contact@jlv-laverie.fr</a>
+      <p class="text-muted text-xs mt-1">Coordonnées à confirmer</p>
+    </div>
+  </div>
+
+  <div class="border-t border-line">
+    <div class="max-w-[1240px] mx-auto px-5 sm:px-8 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-muted">
+      <p>&copy; {year} JLV Laverie · Vienne</p>
+      <p>Site réalisé par <a href="https://veridian.site" target="_blank" rel="noopener" class="hover:text-accent transition-colors">Veridian</a></p>
+    </div>
+  </div>
+</footer>

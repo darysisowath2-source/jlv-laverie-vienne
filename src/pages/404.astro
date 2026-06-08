@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+---
+<Layout title="Page introuvable · JLV Laverie" description="Cette page n'existe pas.">
+  <Nav />
+  <main id="top" class="pt-14 min-h-[70vh] flex items-center">
+    <div class="max-w-[1240px] mx-auto px-5 sm:px-8 py-24 text-center">
+      <p class="eyebrow mb-5">Erreur 404</p>
+      <h1 class="font-medium tracking-tight leading-[1.05] mb-6" style="font-size: var(--text-display);">
+        Cette page a pris <em class="font-display italic" style="color:var(--color-muted-strong);">un tour de trop.</em>
+      </h1>
+      <p class="mb-10 max-w-sm mx-auto" style="color:var(--color-muted);">La page que vous cherchez n'existe pas ou a été déplacée.</p>
+      <a href="/" class="cta">Retour à l'accueil <span aria-hidden="true">→</span></a>
+    </div>
+  </main>
+  <Footer />
+</Layout>

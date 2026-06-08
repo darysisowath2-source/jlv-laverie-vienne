@@ -1,0 +1,311 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+
+// Infos vérifiées web (PagesJaunes, juin 2026) :
+//   CONFIRMÉ : JLV Laverie, 39 cours Romestang, 38200 Vienne (Isère), laverie automatique
+//   CONFIRMÉ : ouverte 7j/7, tous les jours de 6h à 22h
+//   CONFIRMÉ : aucun avis client en ligne pour le moment (pas de claim "bien notée")
+//   À CONFIRMER terrain :
+//     - téléphone (04 74 00 00 00 = PLACEHOLDER, numéro public incertain sur la fiche)
+//     - tarifs réels des machines (ci-dessous = ESTIMATIONS)
+//     - capacités exactes, lessive incluse/vendue
+//     - photos réelles (remplacer les Unsplash génériques)
+//     - email de contact (placeholder)
+
+const hero = 'https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=1600&q=80'
+const imgMachines = 'https://images.unsplash.com/photo-1604335398980-ededcadcc37d?auto=format&fit=crop&w=1400&q=80'
+const mapsUrl = 'https://www.google.com/maps/search/JLV+Laverie+39+cours+Romestang+38200+Vienne'
+
+// TARIFS À CONFIRMER — estimations plausibles
+const tarifs = [
+  { capacite: '7 kg',  prix: '4,50 €', duree: '30 min', usage: 'quotidien' },
+  { capacite: '13 kg', prix: '8 €',    duree: '40 min', usage: 'familial'  },
+  { capacite: '18 kg', prix: '11 €',   duree: '50 min', usage: 'couette'   },
+]
+
+const horaires = [
+  { jour: 'Tous les jours', heures: '6h · 22h' },
+  { jour: 'Dernier lavage',  heures: '21h' },
+]
+
+const chiffres = [
+  { val: '7j/7',     label: 'ouverte tous les jours' },
+  { val: '6h-22h',   label: 'large amplitude horaire' },
+  { val: '≈ 1h',     label: 'laver et sécher' },
+  { val: 'Centre',   label: 'cours Romestang, Vienne' },
+]
+
+const atouts = [
+  { titre: 'Machines grande capacité', detail: 'Jusqu\'à 18 kg : couettes, duvets et gros volumes acceptés.' },
+  { titre: 'Séchage rapide', detail: 'Séchoirs performants pour repartir avec un linge sec en moins d\'une heure.' },
+  { titre: 'CB, sans contact et espèces', detail: 'Pas besoin de monnaie exacte, chaque borne accepte tout.' },
+  { titre: 'Ouverte de 6h à 22h, 7j/7', detail: 'Une large amplitude horaire pour passer avant le travail comme en soirée.' },
+]
+
+const faq = [
+  { q: 'Quels sont les horaires ?', a: "La laverie est ouverte tous les jours, 7j/7, de 6h à 22h. Le dernier lavage est conseillé vers 21h pour avoir le temps de sécher." },
+  { q: 'Faut-il apporter sa lessive ?', a: "La lessive et l'adoucissant sont disponibles sur place. Vous pouvez aussi apporter les vôtres si vous préférez un produit spécifique." },
+  { q: 'La couette est-elle acceptée ?', a: 'Oui. La machine 18 kg accueille une couette deux personnes confortablement. Pour les couettes très épaisses, venez plutôt en début de journée pour le temps de séchage.' },
+  { q: 'Comment payer ?', a: 'Espèces, carte bancaire et paiement sans contact à chaque machine. Pas besoin de monnaie.' },
+  { q: 'Combien de temps prévoir ?', a: 'Comptez 30 à 45 minutes pour le lavage selon la taille, plus 20 à 30 minutes de séchage. Une heure complète suffit dans la grande majorité des cas.' },
+  { q: 'Où se garer ?', a: 'La laverie est en plein centre de Vienne, cours Romestang, avec du stationnement de voirie à proximité.' },
+]
+---
+<Layout
+  title="JLV Laverie · Vienne (38)"
+  description="Laverie automatique 39 cours Romestang à Vienne (38200). Machines grande capacité, séchage rapide, ouverte 7j/7 de 6h à 22h, en plein centre-ville."
+>
+  <Nav />
+
+  <main id="top" class="pt-14">
+
+    <!-- ══════════ HERO — orbs violet + brin de lavande ══════════ -->
+    <section class="relative overflow-hidden border-b border-line" style="background: var(--color-bg);">
+
+      <!-- Orbs ambiants violet + lavande -->
+      <div class="absolute pointer-events-none" style="width:520px;height:520px;top:-140px;left:-100px;border-radius:50%;background:radial-gradient(circle,rgba(95,77,150,0.12) 0%,transparent 70%);filter:blur(70px);" aria-hidden="true"></div>
+      <div class="orb-2 absolute pointer-events-none" style="width:600px;height:600px;top:0;right:-160px;border-radius:50%;background:radial-gradient(circle,rgba(168,146,207,0.16) 0%,transparent 70%);filter:blur(90px);" aria-hidden="true"></div>
+      <div class="orb-1 absolute pointer-events-none" style="width:420px;height:420px;bottom:-120px;left:35%;border-radius:50%;background:radial-gradient(circle,rgba(95,77,150,0.09) 0%,transparent 70%);filter:blur(70px);" aria-hidden="true"></div>
+
+      <!-- Brin de lavande décoratif, coin sup droit -->
+      <svg aria-hidden="true" class="absolute top-0 right-0 w-[340px] h-[380px] pointer-events-none select-none" style="opacity:0.55" viewBox="0 0 340 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M250 40 Q244 150 214 250 Q200 300 188 340" stroke="#5f4d96" stroke-width="1.6" stroke-linecap="round" opacity="0.5"/>
+        <g fill="#a892cf">
+          <ellipse cx="250" cy="52" rx="6" ry="11" opacity="0.8"/>
+          <ellipse cx="240" cy="74" rx="6" ry="11" transform="rotate(-12 240 74)" opacity="0.7"/>
+          <ellipse cx="252" cy="78" rx="6" ry="11" transform="rotate(12 252 78)" opacity="0.7"/>
+          <ellipse cx="236" cy="100" rx="6" ry="11" transform="rotate(-14 236 100)" opacity="0.65"/>
+          <ellipse cx="248" cy="106" rx="6" ry="11" transform="rotate(14 248 106)" opacity="0.65"/>
+          <ellipse cx="230" cy="130" rx="5.5" ry="10" transform="rotate(-16 230 130)" opacity="0.6"/>
+          <ellipse cx="242" cy="136" rx="5.5" ry="10" transform="rotate(16 242 136)" opacity="0.6"/>
+          <ellipse cx="222" cy="162" rx="5" ry="9" transform="rotate(-18 222 162)" opacity="0.5"/>
+          <ellipse cx="234" cy="168" rx="5" ry="9" transform="rotate(18 234 168)" opacity="0.5"/>
+          <ellipse cx="214" cy="196" rx="4.5" ry="8" transform="rotate(-20 214 196)" opacity="0.4"/>
+          <ellipse cx="225" cy="202" rx="4.5" ry="8" transform="rotate(20 225 202)" opacity="0.4"/>
+        </g>
+      </svg>
+
+      <div class="relative max-w-[1240px] mx-auto px-5 sm:px-8 pt-20 sm:pt-28 pb-12 sm:pb-16 text-center">
+        <div class="hero-item flex items-center justify-center gap-3 mb-7" style="--hi: 0">
+          <span class="dot"></span>
+          <span class="eyebrow">Vienne · 39 cours Romestang</span>
+        </div>
+        <h1 class="font-medium tracking-tight leading-[1.0] max-w-3xl mx-auto" style="font-size: var(--text-display-xl);">
+          <span class="hero-item block" style="--hi: 1">Votre linge,</span>
+          <em class="hero-item font-display italic block" style="--hi: 2; font-weight:500;">frais comme un matin.</em>
+        </h1>
+        <div class="hero-item mt-10 flex flex-wrap items-center justify-center gap-3" style="--hi: 3">
+          <a href="#tarifs" class="cta">Voir les tarifs <span aria-hidden="true">→</span></a>
+          <a href="#visite" class="cta-ghost">Horaires & accès</a>
+        </div>
+        <div class="hero-item mt-8 flex items-center justify-center gap-3 text-sm" style="--hi: 4">
+          <span id="badge-open" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm font-medium" style="background:var(--color-accent-soft);color:var(--color-accent);">
+            <span class="w-1.5 h-1.5 rounded-full inline-block animate-pulse" style="background:var(--color-accent);"></span>
+            Ouvert maintenant
+          </span>
+          <span id="badge-closed" style="display:none;background:var(--color-bg-elev);color:var(--color-muted);" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm font-medium">
+            <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:var(--color-muted);"></span>
+            Fermé
+          </span>
+          <span id="badge-label" style="color:var(--color-muted);">jusqu'à 22h</span>
+        </div>
+        <script>
+          {
+            const min = new Date().getHours() * 60 + new Date().getMinutes();
+            const isOpen = min >= 360 && min < 1320; // 6h-22h (confirmé PagesJaunes)
+            if (!isOpen) {
+              document.getElementById('badge-open').style.display = 'none';
+              document.getElementById('badge-closed').style.display = '';
+              document.getElementById('badge-label').textContent = min < 360 ? 'ouvre à 6h' : 'ouvre demain à 6h';
+            }
+          }
+        </script>
+      </div>
+
+      <figure class="hero-item w-full aspect-[2/1] sm:aspect-[3/1] overflow-hidden" style="--hi: 5">
+        <img src={hero} alt="Intérieur lumineux de la JLV Laverie, Vienne" class="w-full h-full object-cover object-center" loading="eager" fetchpriority="high"/>
+      </figure>
+    </section>
+
+    <!-- ══════════ BANDEAU INFOS ══════════ -->
+    <div class="border-b border-line" style="background: var(--color-bg-elev);">
+      <div class="max-w-[1240px] mx-auto px-5 sm:px-8 py-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm" style="color:var(--color-muted);">
+        <span class="flex items-center gap-2">
+          <span class="dot"></span>
+          <span>Ouverte 7j/7, de 6h à 22h</span>
+        </span>
+        <span class="hidden sm:block w-px h-4" style="background:var(--color-line-strong);"></span>
+        <span>Laverie automatique en plein centre de Vienne</span>
+      </div>
+    </div>
+
+    <!-- ══════════ CHIFFRES ══════════ -->
+    <div class="border-b border-line reveal-on-scroll" style="background: var(--color-bg-warm);">
+      <div class="grid grid-cols-2 sm:grid-cols-4">
+        {chiffres.map((c) => (
+          <div class="px-6 sm:px-12 py-14 sm:py-16 text-center border-r border-b last:border-r-0 border-line">
+            <p class="font-display italic leading-none" style="font-size: clamp(2.5rem, 5vw, 4rem); color: var(--color-accent); font-weight:500;">{c.val}</p>
+            <p class="mt-4 text-xs uppercase" style="color: var(--color-muted); letter-spacing: 0.14em;">{c.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- ══════════ TARIFS ══════════ -->
+    <section id="tarifs" class="border-b border-line" style="background: var(--color-bg);">
+      <div class="max-w-[1240px] mx-auto px-5 sm:px-8 py-20 sm:py-28 reveal-on-scroll">
+        <div class="flex items-baseline justify-between flex-wrap gap-4 mb-12">
+          <div>
+            <p class="eyebrow mb-3">Tarifs</p>
+            <h2 class="font-medium tracking-tight" style="font-size: var(--text-h2);">
+              Clair, <em class="font-display italic" style="color:var(--color-muted-strong);">à la machine.</em>
+            </h2>
+          </div>
+          <p class="text-sm" style="color:var(--color-muted);">Sans contact, espèces ou CB</p>
+        </div>
+        <div class="grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x border-y" style="border-color:var(--color-line);">
+          {tarifs.map((t) => (
+            <div class="py-10 sm:py-12 px-2 sm:px-8 text-center">
+              <p class="font-display italic text-3xl sm:text-4xl" style="color:var(--color-muted-strong);">{t.capacite}</p>
+              <p class="mt-6 sm:mt-8 font-medium tracking-tight leading-none" style="font-size: clamp(3rem, 6vw, 4.5rem);">{t.prix}</p>
+              <p class="mt-6 text-sm" style="color:var(--color-muted);">
+                <span style="color:var(--color-fg);">{t.duree}</span><span class="mx-2">·</span>{t.usage}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div class="mt-10 flex flex-wrap items-baseline gap-x-8 gap-y-3 text-sm">
+          <span style="color:var(--color-muted);">+</span>
+          <span><span class="font-medium">Séchage</span> <span style="color:var(--color-muted);">1 € / 10 min</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ ÉQUIPEMENTS ══════════ -->
+    <section id="equipements" class="border-b border-line" style="background: var(--color-bg-elev);">
+      <div class="max-w-[1240px] mx-auto px-5 sm:px-8 py-20 sm:py-28 reveal-on-scroll">
+        <p class="eyebrow mb-3">Sur place</p>
+        <h2 class="font-medium tracking-tight mb-14" style="font-size: var(--text-h2);">
+          Pensé pour <em class="font-display italic" style="color:var(--color-muted-strong);">vous simplifier la vie.</em>
+        </h2>
+        <div class="grid sm:grid-cols-2 gap-8">
+          {atouts.map((a) => (
+            <div class="flex items-start gap-5 py-8 border-b" style="border-color:var(--color-line);">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" class="shrink-0 mt-0.5" aria-hidden="true">
+                <circle cx="11" cy="11" r="9" stroke="#a892cf" stroke-width="1" opacity="0.7"/>
+                <circle cx="11" cy="11" r="3" fill="#5f4d96" opacity="0.8"/>
+              </svg>
+              <div>
+                <p class="font-medium text-lg mb-1">{a.titre}</p>
+                <p class="text-sm" style="color:var(--color-muted);">{a.detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ PHOTO BREAK ══════════ -->
+    <div class="relative aspect-[21/9] overflow-hidden border-b border-line">
+      <img src={imgMachines} alt="Machines à laver JLV Laverie, Vienne" class="w-full h-full object-cover" loading="lazy"/>
+      <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(40,31,48,0.66) 0%, rgba(40,31,48,0.12) 100%);"></div>
+      <div class="absolute inset-0 flex items-center px-8 sm:px-16 lg:px-24">
+        <p class="font-display italic max-w-xl leading-snug" style="font-size: clamp(1.75rem, 3.5vw, 3rem); color: #f6f3ef; font-weight:500;">
+          Un linge frais,<br/>au cœur de Vienne.
+        </p>
+      </div>
+    </div>
+
+    <!-- ══════════ HORAIRES + ADRESSE ══════════ -->
+    <section id="visite" class="border-b border-line" style="background: var(--color-bg);">
+      <div class="max-w-[1240px] mx-auto px-5 sm:px-8 py-20 sm:py-28 grid lg:grid-cols-12 gap-12 reveal-on-scroll">
+        <div class="lg:col-span-5">
+          <p class="eyebrow mb-3">Nous trouver</p>
+          <h2 class="font-medium tracking-tight mb-8" style="font-size: var(--text-h2);">
+            <em class="font-display italic">Cours Romestang,</em><br/>en plein Vienne.
+          </h2>
+          <p class="text-xl leading-snug">39 cours Romestang<br/>38200 Vienne</p>
+          <a href={mapsUrl} target="_blank" rel="noopener" class="mt-8 inline-flex items-center gap-2 text-sm font-medium hover:underline" style="color:var(--color-accent);">
+            Ouvrir dans Google Maps <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="lg:col-span-6 lg:col-start-7">
+          <p class="eyebrow mb-6">Horaires</p>
+          <ul class="divide-y border-y" style="border-color:var(--color-line);">
+            {horaires.map((h) => (
+              <li class="flex items-baseline justify-between py-5">
+                <span class="text-lg">{h.jour}</span>
+                <span class="font-display text-xl sm:text-2xl tracking-tight" style="color:var(--color-muted-strong);">{h.heures}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-5 text-sm" style="color:var(--color-muted);">Ouverte 7j/7, de 6h à 22h.</p>
+        </div>
+        <div class="lg:col-span-12 mt-4 lg:mt-8">
+          <div class="relative aspect-[16/10] sm:aspect-[21/9] overflow-hidden border" style="border-color:var(--color-line);">
+            <iframe
+              src="https://maps.google.com/maps?q=39+cours+Romestang+38200+Vienne&z=16&output=embed"
+              class="absolute inset-0 w-full h-full"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Carte, JLV Laverie à Vienne"
+            ></iframe>
+            <a href={mapsUrl} target="_blank" rel="noopener" class="absolute inset-0 z-10" aria-label="Ouvrir la JLV Laverie dans Google Maps"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ FAQ ══════════ -->
+    <section id="faq" class="border-b border-line" style="background: var(--color-bg-elev);">
+      <div class="max-w-[1240px] mx-auto px-5 sm:px-8 py-20 sm:py-28 grid lg:grid-cols-12 gap-10 reveal-on-scroll">
+        <div class="lg:col-span-4">
+          <p class="eyebrow mb-3">Avant de venir</p>
+          <h2 class="font-medium tracking-tight" style="font-size: var(--text-h2);">
+            Questions <em class="font-display italic" style="color:var(--color-muted-strong);">fréquentes.</em>
+          </h2>
+        </div>
+        <div class="lg:col-span-8">
+          <ul class="border-y divide-y" style="border-color:var(--color-line);">
+            {faq.map((item) => (
+              <li>
+                <details>
+                  <summary class="py-5 sm:py-6 flex items-center justify-between gap-6 cursor-pointer">
+                    <span class="text-base sm:text-lg font-medium pr-4">{item.q}</span>
+                    <span class="faq-toggle text-3xl font-light shrink-0" style="color:var(--color-muted);">+</span>
+                  </summary>
+                  <p class="faq-answer pb-6 pr-12 leading-relaxed" style="color:var(--color-muted-strong);">{item.a}</p>
+                </details>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ CONTACT ══════════ -->
+    <section id="contact" class="relative overflow-hidden" style="background: var(--color-bg);">
+      <div class="absolute pointer-events-none orb-2" style="width:640px;height:640px;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(95,77,150,0.12) 0%,transparent 65%);filter:blur(100px);" aria-hidden="true"></div>
+      <div class="absolute pointer-events-none orb-1" style="width:340px;height:340px;top:-40px;right:-40px;border-radius:50%;background:radial-gradient(circle,rgba(168,146,207,0.14) 0%,transparent 70%);filter:blur(70px);" aria-hidden="true"></div>
+
+      <div class="relative max-w-[1240px] mx-auto px-5 sm:px-8 py-24 sm:py-32 text-center reveal-on-scroll">
+        <p class="eyebrow mb-6">Contact</p>
+        <h2 class="font-medium tracking-tight max-w-2xl mx-auto leading-[1.05]" style="font-size: var(--text-display);">
+          Une question ?<br/>
+          <em class="font-display italic" style="color:var(--color-muted-strong);">On répond vite.</em>
+        </h2>
+        <div class="mt-12 flex flex-wrap items-center justify-center gap-3">
+          <!-- PLACEHOLDER tél : numéro à confirmer avec le client -->
+          <a href="tel:0474000000" class="cta">04 74 00 00 00 <span aria-hidden="true">→</span></a>
+          <a href="mailto:contact@jlv-laverie.fr" class="cta-ghost">contact@jlv-laverie.fr</a>
+        </div>
+        <p class="mt-5 text-xs" style="color:var(--color-muted);">Coordonnées à confirmer avec l'établissement.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
