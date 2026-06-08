@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Lavande & pierre claire — crème chaud, aubergine profond, violet lavande */
+  /* Lavande & pierre claire : crème chaud, aubergine profond, violet lavande */
   --color-bg:           #f6f3ef;
   --color-bg-elev:      #ece6df;
   --color-bg-warm:      #e4dcd2;
